@@ -44,7 +44,13 @@
                 </div>
             </div>
         </nav>
-      
+      <!--Add PartialView to Slider-->
+        @if (ViewBag.IsHome == true)
+        {
+            <partial name="_Slider" />
+        }
+
+      <!--End Add PartialView to Slider-->
     </header>
     <div class="container">
         <main role="main" class="pb-3">

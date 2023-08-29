@@ -9,10 +9,10 @@ namespace BlogCore.Areas.Admin.Controllers
     public class CategoriesController : Controller
     {
         private readonly IWorkContainer _workContainer;
-        private readonly ApplicationDbContext _context;
+        //private readonly ApplicationDbContext _context;
         public CategoriesController(ApplicationDbContext dbContext, IWorkContainer workContainer)
         {
-            _context = dbContext;
+            //_context = dbContext;
             _workContainer = workContainer;
         }
         [HttpGet]
