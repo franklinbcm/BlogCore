@@ -100,6 +100,12 @@ function cargarDatatable() {
                             }
                         },
                         "width": "20%"
+                    }, {
+                    "data": "urlImage",
+                    "render": function (image) {
+                        return `<img class="card img-thumbnail" src="../${image}" width="200" style="max-height:60px;"  />`
+                    },
+                        "width": "18%"
                     },
                     /*CIERRA EDICION ESTADO*/
                     {
