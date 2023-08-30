@@ -2,10 +2,12 @@
 using BlogCore.DL.Data.Repository.IRepository;
 using BlogCore.Models;
 using BlogCore.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogCore.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,User")]
     [Area("Admin")]
     public class ArticlesController : Controller
     {
@@ -17,7 +19,7 @@ namespace BlogCore.Areas.Admin.Controllers
             _workContainer = workContainer;
             _hostEnvironment = hostEnvironment; 
         }
-
+        //[AllowAnonymous]
         [HttpGet]
         public IActionResult Index()
         {

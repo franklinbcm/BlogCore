@@ -18,6 +18,7 @@ namespace BlogCore.DL.Data.Repository
             Categorie = new CategoryRepository(_db);
             Article = new ArticleRepository(_db);
             Slider = new SliderRepository(_db);
+            User = new UserRepository(_db);
         }
 
 
@@ -25,6 +26,7 @@ namespace BlogCore.DL.Data.Repository
 
         public IArticleRepository Article { get; private set; }
         public ISliderRepository Slider { get; private set; }
+        public IUserRepository User { get; private set; }
 
         public void Dispose()
         {

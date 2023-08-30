@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using BlogCore.Utils;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -23,18 +24,24 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Categories" asp-action="Index">Categorías</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Articles" asp-action="Index">Artículos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Sliders" asp-action="Index">Slider</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Users" asp-action="Index">Usuarios</a>
-                        </li>
+                        @if (User.IsInRole(CNT.Admin) || User.IsInRole(CNT.User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Articles" asp-action="Index">Artículos</a>
+                            </li>
+                        }
+                        @if (User.IsInRole(CNT.Admin))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Categories" asp-action="Index">Categorías</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Sliders" asp-action="Index">Slider</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Users" asp-action="Index">Usuarios</a>
+                            </li>
+                        }
                     </ul>
 @*                     <form class="d-flex">
                         <input class="form-control me-sm-2" type="search" placeholder="Search">
