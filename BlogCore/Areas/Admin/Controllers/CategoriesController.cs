@@ -3,6 +3,7 @@ using BlogCore.DL.Data.Repository.IRepository;
 using BlogCore.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlogCore.Areas.Admin.Controllers
 {
@@ -11,11 +12,12 @@ namespace BlogCore.Areas.Admin.Controllers
     public class CategoriesController : Controller
     {
         private readonly IWorkContainer _workContainer;
-        //private readonly ApplicationDbContext _context;
-        public CategoriesController(ApplicationDbContext dbContext, IWorkContainer workContainer)
+        private readonly ApplicationDbContext _context;
+        public CategoriesController(ApplicationDbContext dbContext, IWorkContainer workContainer, ApplicationDbContext context)
         {
             //_context = dbContext;
             _workContainer = workContainer;
+            _context = context;
         }
         //[AllowAnonymous]
         [HttpGet]
@@ -69,7 +71,11 @@ namespace BlogCore.Areas.Admin.Controllers
         //Call Api
         [HttpGet]
         public IActionResult GetAll() {
-            var model = _workContainer.Categorie.GetAll();
+            // para trabajar con la tabla se invoca asi
+            //var model = _workContainer.Categorie.GetAll();
+
+            //Para utilizar un Stored Procedure  se invoca asi y con el _context, en vez de trabajar con la tabla
+            var model = _context.Categories.FromSqlRaw<Category>("Sp_Get_Category").ToList();
             return Json(new
             {
                 Result = "Ok",
